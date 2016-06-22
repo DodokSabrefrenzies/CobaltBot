@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<body>
+<div>
+<canvas id="canvas" width = "1920" height = "1080">
+</canvas>
+</div>
+ 
+<script>
+var canvas
+var ctx;
+var dx = 5;
+var dy = 5;
+var x = 50;
+var y = 50;
+var velx = 0;
+var vely = 0;
+var width = 300;
+var height = 300;
+ 
+function character(x,y,r){
+  ctx.beginPath();
+  ctx.arc(x,y,r,0,Math.PI*2,true);
+  ctx.fill();
+}
+ 
+function rect(x,y,w,h) {
+  ctx.beginPath();
+  ctx.rect(x,y,w,h);
+  ctx.fill();
+  ctx.stroke();
+}
+ 
+function clear(){
+  ctx.clearRect(0,0,width,height);
+}
+ 
+function init(){
+  canvas = document.getElementById("canvas");
+  ctx = canvas.getContext("2d");
+  return setInterval(draw, 10);
+}
+ 
+function doKeyDown(evt){
+  switch (evt.keyCode){
+    case 87:
+      vely -= 5;
+      break;
+    case 83:
+      vely += 1;
+      break;
+    case 65:
+      velx -= 0.5;
+      break;
+    case 68:
+      velx += 0.5;
+      break;
+  }
+}
+ 
+function draw(){
+  clear();
+  ctx.fillStyle = "white";
+  ctx.strokeStyle = "black";
+  rect(0,0,width,height);
+  ctx.fillStyle = "purple";
+  if(velx < 0){
+    if(x-velx < 0){
+      x = 0;
+      velx = -0.5*velx;
+    }else{
+      x+= velx;
+    }
+  }else if(velx > 0){
+    if(x+velx > width){
+      x = width;
+      velx = -0.5*velx;
+    }else{
+      x += velx;
+    }
+  }
+  if(y <= height-10){
+    vely += 0.0981
+  }
+  if(velx > 0){
+    velx -= 0.01
+  }else if(velx < 0){
+    velx += 0.01
+  }
+  if(vely < 0){
+    if(y-vely < 0){
+      y = 0;
+      vely = -0.5*vely
+    }else{
+      y+= vely;
+    }
+  }else if(vely > 0){
+    if(y+vely > width){
+      y = height;
+      vely = -0.5*vely
+    }else{
+      y += vely;
+    }
+  }
+ 
+  character(x,y,10);
+ 
+}
+ 
+init();
+window.addEventListener('keydown',doKeyDown,true);
+</script>
+ 
+</body>
+</html>
