@@ -203,13 +203,4 @@ async def on_message(message):
     ###MISC##
     if input[0] == ('>eval') and message.author.id == "190092287722651648":
         await eval_async(message)
-    if input[0] == ('>dice'):
-        input1 = message.content.strip('>dice')
-        dice = re.compile("\d+?(?:\+\-\d*)?")
-        dice = re.search(dice,input1)
-        print(dice)
-        final = str(dick) + "d"+str(dicks[1])+str(addons)
-        print(final)
-        dice1 = dice.roll(final)
-        await client.send_message(message.channel,dice1)
 client.run("Token")
