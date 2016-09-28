@@ -39,6 +39,17 @@ counter = (0)
 from io import BytesIO
 client = discord.Client()
 connection = pymysql.connect()
+
+
+
+
+###SOME FUNCTIONS HAVE BEEN REMOVED TO KEEP MY BOT *MY* BOT.
+
+
+
+
+
+
 ############################SYSTEM FUNCTIONS############################
 async def say(dest,input,message):
     if dest == ('pm'):
